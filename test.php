@@ -1,8 +1,7 @@
 <?php   
-include_once('db.php');
+    include_once('db.php');
 
-$db = new TaskDB();
+    $db = new TaskDB();
 
-print($db->writeTask("dddddddddd"));
-    
+    echo $db->getTasks2();
 ?>

@@ -27,30 +27,16 @@
             }
             return null; // Did not work
         }
-        // Returns array of all the tasks
-        function getTasks(){
-            $result = array();
-
-            // Get all the ids from table
-            $ids = $this->query('SELECT ID FROM Task');
-            $taskStatement = $this->prepare('SELECT task FROM Task WHERE ID=:ID');
-
-            // Iterate til ids is empty
-            while($ID = $ids->fetchArray()){ 
-                // Get the id value
-                $ID = $ID['ID']; 
-                // Use id to execute statement
-                $taskStatement->bindValue(':ID', $ID);
-                $task = $taskStatement->execute();
-                // Apply data to array and reset statement
-                $result[$ID] = $task->fetchArray()['task'];
-                $taskStatement->reset();
-            }
-            return $result;
-        }
         // TODO: MAKE A BETTER ONE
-        function getTasks2(){
+        function getTasks(){
+            $query_result = $this->query("SELECT * FROM Task");
+            $formated_array = [];
+            
+            while($row = $query_result->fetchArray()){
+                $formated_array[$row['ID']] = $row['task'];
+            }
 
+            return $formated_array;
         }
 
         function clearTasks(){

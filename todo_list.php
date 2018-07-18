@@ -1,12 +1,12 @@
 <?php
-include_once('db.php');
+    include_once('db.php');
 
-header('Content-Type: application/json');
+    header('Content-Type: application/json');
 
-$db = new TaskDB();
+    $db = new TaskDB();
 
-$data = $db->getTasks();
+    $data = $db->getTasks();
 
-echo json_encode($data);
+    echo json_encode($data);
 
 ?>
